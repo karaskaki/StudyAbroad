@@ -48,7 +48,7 @@ export default function Profile() {
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         setImagePercent(Math.round(progress));
       },
-      (error) => {
+      () => {
         setImageError(true);
       },
       () => {
@@ -67,6 +67,7 @@ export default function Profile() {
     e.preventDefault();
     try {
       dispatch(updateUserStart());
+
       const res = await fetch(`/api/user/update/${currentUser._id}`, {
         method: "POST",
         headers: {
@@ -75,10 +76,12 @@ export default function Profile() {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
+
       if (data.success === false) {
         dispatch(updateUserFailure(data));
         return;
       }
+
       dispatch(updateUserSuccess(data));
       setUpdateSuccess(true);
     } catch (error) {
@@ -182,8 +185,10 @@ export default function Profile() {
           Sign out
         </span>
       </div>
-      <p className="text-red-700 mt-5">{error && "Something went wrong!"}</p>
-      <p className="text-green-700 mt-5">
+      <p className="text-red-700 mt-5 font-bold">
+        {error && "Something went wrong!"}
+      </p>
+      <p className="text-green-700 mt-5 font-bold">
         {updateSuccess && "User is updated successfully!"}
       </p>
     </div>
