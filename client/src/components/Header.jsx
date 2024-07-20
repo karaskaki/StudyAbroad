@@ -2,9 +2,9 @@ import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import {
   FaBars,
-  FaDribbble,
-  FaFacebook,
-  FaTwitter,
+  // FaDribbble,
+  // FaFacebook,
+  // FaTwitter,
   FaXmark,
 } from "react-icons/fa6";
 import { useState } from "react";
@@ -107,15 +107,6 @@ export default function Header() {
 
         {/* MenuItems */}
         <div className="text-white lg:flex gap-4 item-center hidden">
-          <a href="/" className="hover:text-orange-500">
-            <FaFacebook />
-          </a>
-          <a href="/" className="hover:text-orange-500">
-            <FaDribbble />
-          </a>
-          <a href="/" className="hover:text-orange-500">
-            <FaTwitter />
-          </a>
           <Link to="/profile">
             {currentUser ? (
               <img
