@@ -9,6 +9,12 @@ import PrivateRoute from "./components/PrivateRoute";
 import Contact from "./pages/Contact";
 import Exams from "./pages/Exams";
 import Services from "./pages/Services";
+import Footer from "./components/Footer";
+import AboutGermany from "./pages/AboutGermany";
+import AboutEngland from "./pages/AboutEngland";
+import AboutCanada from "./pages/AboutCanada";
+import AboutAustralia from "./pages/AboutAustralia";
+import AboutUSA from "./pages/AboutUSA";
 
 export default function App() {
   return (
@@ -25,8 +31,17 @@ export default function App() {
         </Route>
         <Route path="/contact" element={<Contact />} />
         <Route path="/exams" element={<Exams />} />
-        <Route path="/services" element={<Services />} />
+        <Route path="/Services" element={<Services />} />
+        <Route path="/Destinations/AboutUSA" element={<AboutUSA />} />
+        <Route path="/Destinations/AboutGermany" element={<AboutGermany />} />
+        <Route path="/Destinations/AboutEngland" element={<AboutEngland />} />
+        <Route path="/Destinations/AboutCanada" element={<AboutCanada />} />
+        <Route
+          path="/Destinations/AboutAustralia"
+          element={<AboutAustralia />}
+        />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

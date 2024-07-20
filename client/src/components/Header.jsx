@@ -1,21 +1,121 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+import {
+  FaBars,
+  FaDribbble,
+  FaFacebook,
+  FaTwitter,
+  FaXmark,
+} from "react-icons/fa6";
+import { useState } from "react";
 
 export default function Header() {
   const { currentUser } = useSelector((state) => state.user);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleMouseEnter = () => {
+    setIsDropdownOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsDropdownOpen(false);
+  };
+
+  const navItems = [
+    { path: "/", link: "Home" },
+    { path: "/about", link: "About" },
+    { path: "/Destinations", link: "Destinations" },
+    { path: "/exam", link: "Exams" },
+    { path: "/services", link: "Services" },
+    { path: "/contact", link: "Contact" },
+  ];
+
+  const subLinks = [
+    { path: "/Destinations/AboutUSA", link: "USA" },
+    { path: "/Destinations/AboutGermany", link: "Germany" },
+    { path: "/Destinations/AboutEngland", link: "England" },
+    { path: "/Destinations/AboutCanada", link: "Canada" },
+    { path: "/Destinations/AboutAustralia", link: "Australia" },
+  ];
+
   return (
-    <div className="bg-slate-200">
-      <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
-        <Link to="/">
-          <h1 className="font-bold">Study Abroad</h1>
-        </Link>
-        <ul className="flex gap-4">
-          <Link to="/">
-            <li>Home</li>
-          </Link>
-          <Link to="/about">
-            <li>About</li>
-          </Link>
+    <header className="bg-black text-white fixed top-0 left-0 right-0 z-50">
+      <nav className="px-4 py-4 max-w-7xl mx-auto flex justify-between items-center">
+        <a href="/" className="text-3xl font-bold text-white">
+          Study<span className="text-orange-500">Abroad</span>
+        </a>
+
+        {/* NavItems */}
+        <ul className="md:flex gap-12 text-lg hidden">
+          {navItems.map(({ path, link }) => (
+            <li
+              className="text-white relative"
+              key={path}
+              onMouseEnter={link === "Destinations" ? handleMouseEnter : null}
+            >
+              {link === "Destinations" ? (
+                <span
+                  className="cursor-pointer"
+                  onClick={(e) => {
+                    if (isDropdownOpen) {
+                      e.preventDefault();
+                    }
+                  }}
+                >
+                  {link}
+                </span>
+              ) : (
+                <NavLink
+                  className={({ isActive, isPending }) =>
+                    isActive ? "active" : isPending ? "pending" : ""
+                  }
+                  to={path}
+                >
+                  {link}
+                </NavLink>
+              )}
+              {link === "Destinations" && isDropdownOpen && (
+                <div
+                  className="absolute left-0 top-full mt-2 w-40 bg-white text-black shadow-lg rounded-md"
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  {subLinks.map(({ path, link }) => (
+                    <NavLink
+                      to={path}
+                      className={`${({ isActive, isPending }) =>
+                        isActive
+                          ? "active"
+                          : isPending
+                          ? "pending"
+                          : ""}dropdown-item p-2 block`}
+                      key={path}
+                    >
+                      {link}
+                    </NavLink>
+                  ))}
+                </div>
+              )}
+            </li>
+          ))}
+        </ul>
+
+        {/* MenuItems */}
+        <div className="text-white lg:flex gap-4 item-center hidden">
+          <a href="/" className="hover:text-orange-500">
+            <FaFacebook />
+          </a>
+          <a href="/" className="hover:text-orange-500">
+            <FaDribbble />
+          </a>
+          <a href="/" className="hover:text-orange-500">
+            <FaTwitter />
+          </a>
           <Link to="/profile">
             {currentUser ? (
               <img
@@ -24,11 +124,96 @@ export default function Header() {
                 className="h-7 w-7 rounded-full object-cover"
               />
             ) : (
-              <li>Sign In</li>
+              <button className="bg-orange-500 px-6 py-2 font-medium rounded hover:bg-white hover:text-orange-500 transition-all duration-200 ease-in">
+                Sign Up For Free
+              </button>
             )}
           </Link>
+        </div>
+
+        {/* Mobile Nav */}
+        <div>
+          <button onClick={toggleMenu} className="cursor-pointer md:hidden">
+            {isMenuOpen ? (
+              <FaXmark className="w-5 h-5" />
+            ) : (
+              <FaBars className="w-5 h-5" />
+            )}
+          </button>
+        </div>
+      </nav>
+
+      {/* Menu Items only for mobile */}
+      <div>
+        <ul
+          className={`md:hidden gap-12 text-lg block space-y-4 px-4 py-6 mt-14 bg-white ${
+            isMenuOpen
+              ? "fixed top-0 left-0 w-full transition-all ease-out duration-150"
+              : "hidden"
+          }`}
+        >
+          {navItems.map(({ path, link }) => (
+            <li className="text-black" key={path}>
+              <NavLink onClick={toggleMenu} to={path}>
+                {link}
+              </NavLink>
+              {link === "Destinations" && (
+                <ul className="space-y-2">
+                  {subLinks.map(({ path, link }) => (
+                    <li key={path}>
+                      <NavLink onClick={toggleMenu} to={path}>
+                        {link}
+                      </NavLink>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))}
         </ul>
       </div>
-    </div>
+    </header>
   );
 }
+
+// // // <div className="bg-black flex h-20 items-center justify-center transition-all duration-200">
+// // //         <div className="flex w-11/12 justify-between items-center max-w-maxContent mx-auto p-3">
+// // //           <Link to="/">
+// // //             <h1 className="text-3xl font-bold text-white">
+// // //               Study<span className="text-orange-500">Abroad</span>
+// // //             </h1>
+// // //           </Link>
+// // //           <ul className="flex gap-x-6">
+// // //             <Link to="/">
+// // //               <li>Home</li>
+// // //             </Link>
+// // //             <Link to="/about">
+// // //               <li>About Us</li>
+// // //             </Link>
+// // //             <Link>
+// // //               <li>Destinations</li>
+// // //             </Link>
+// // //             <Link to="/exams">
+// // //               <li>Exams</li>
+// // //             </Link>
+// // //             <Link to="/services">
+// // //               <li>Services</li>
+// // //             </Link>
+// // //             <Link to="/contact">
+// // //               <li>Contact </li>
+// // //             </Link>
+
+// // //             <Link to="/profile">
+// // //               {currentUser ? (
+// // //                 <img
+// // //                   src={currentUser.profilePicture}
+// // //                   alt="profile"
+// // //                   className="h-7 w-7 rounded-full object-cover"
+// // //                 />
+// // //               ) : (
+// // //                 <li>Sign Up For Free</li>
+// // //               )}
+// // //             </Link>
+// // //           </ul>
+// // //         </div>
+// // //       </div>
