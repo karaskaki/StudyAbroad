@@ -85,7 +85,7 @@ const Footer = () => {
             <ul className="mt-2 space-y-2">
               <li>
                 <a
-                  href="/exam"
+                  href="exams"
                   className="text-gray-500 transition-colors duration-300 hover:text-orange-500"
                 >
                   IELTS
@@ -93,7 +93,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="/exam"
+                  href="/exams"
                   className="text-gray-500 transition-colors duration-300 hover:text-orange-500"
                 >
                   DUOLINGO
@@ -101,7 +101,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="/exam"
+                  href="/exams"
                   className="text-gray-500 transition-colors duration-300 hover:text-orange-500"
                 >
                   GRE
@@ -109,7 +109,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="/exam"
+                  href="/exams"
                   className="text-gray-500 transition-colors duration-300 hover:text-orange-500"
                 >
                   GMAT
@@ -117,7 +117,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="/exam"
+                  href="/exams"
                   className="text-gray-500 transition-colors duration-300 hover:text-orange-500"
                 >
                   TOEFL
@@ -125,7 +125,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="/exam"
+                  href="/exams"
                   className="text-gray-500 transition-colors duration-300 hover:text-orange-500"
                 >
                   SAT
@@ -133,7 +133,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="/exam"
+                  href="/exams"
                   className="text-gray-500 transition-colors duration-300 hover:text-orange-500"
                 >
                   PTE
