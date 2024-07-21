@@ -30,7 +30,7 @@ export default function Header() {
     { path: "/", link: "Home" },
     { path: "/about", link: "About" },
     { path: "/Destinations", link: "Destinations" },
-    { path: "/exam", link: "Exams" },
+    { path: "/exams", link: "Exams" },
     { path: "/services", link: "Services" },
     { path: "/contact", link: "Contact" },
   ];
@@ -166,45 +166,3 @@ export default function Header() {
     </header>
   );
 }
-
-// // // <div className="bg-black flex h-20 items-center justify-center transition-all duration-200">
-// // //         <div className="flex w-11/12 justify-between items-center max-w-maxContent mx-auto p-3">
-// // //           <Link to="/">
-// // //             <h1 className="text-3xl font-bold text-white">
-// // //               Study<span className="text-orange-500">Abroad</span>
-// // //             </h1>
-// // //           </Link>
-// // //           <ul className="flex gap-x-6">
-// // //             <Link to="/">
-// // //               <li>Home</li>
-// // //             </Link>
-// // //             <Link to="/about">
-// // //               <li>About Us</li>
-// // //             </Link>
-// // //             <Link>
-// // //               <li>Destinations</li>
-// // //             </Link>
-// // //             <Link to="/exams">
-// // //               <li>Exams</li>
-// // //             </Link>
-// // //             <Link to="/services">
-// // //               <li>Services</li>
-// // //             </Link>
-// // //             <Link to="/contact">
-// // //               <li>Contact </li>
-// // //             </Link>
-
-// // //             <Link to="/profile">
-// // //               {currentUser ? (
-// // //                 <img
-// // //                   src={currentUser.profilePicture}
-// // //                   alt="profile"
-// // //                   className="h-7 w-7 rounded-full object-cover"
-// // //                 />
-// // //               ) : (
-// // //                 <li>Sign Up For Free</li>
-// // //               )}
-// // //             </Link>
-// // //           </ul>
-// // //         </div>
-// // //       </div>
